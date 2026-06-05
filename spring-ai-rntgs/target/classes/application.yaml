@@ -1,0 +1,13 @@
+spring:
+  ai:
+    openai:
+      api-key: ${OPEN_AI_API_KEY}
+
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+
+prompts:
+  templates:
+    create_investments_plan: "Act like an investment expert. Create an investment plan for the period of: %s, for the profile: %s and with the amount of: %s. Be objective and concise in your answer."

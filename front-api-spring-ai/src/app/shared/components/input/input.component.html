@@ -1,0 +1,16 @@
+<div class="field">
+
+    @if (labelInput()) {
+        <label>{{ labelInput() }}</label>
+    }
+    
+    <input 
+        [type]="typeInput()"
+        [placeholder]="placeHolderInput()"
+        [maxLength]="maxLengthInput()"
+        [disabled]="isDisabled"
+        [value]="value"
+        (input)="onInput($event)"
+        (blur)="onTouched()"
+    />
+</div>

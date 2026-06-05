@@ -1,0 +1,39 @@
+<section>
+    <div class="container">
+        <div class="inputContainer">
+            <app-input
+                [labelInput]="'Prompt Generate Image'"
+                [placeHolderInput]="'Enter your image prompt'"
+                [formControl]="prompt"
+                [maxLengthInput]="50"
+
+            />
+        </div>
+          <div class="inputContainer">
+            <app-input
+                [labelInput]="'Quantity of Images'"
+                [placeHolderInput]="'Enter the number of images you want to generate'"
+                [formControl]="quantity"
+                [maxLengthInput]="25"
+
+            />
+        </div>
+       <div class="inputContainer">
+            <app-input
+                [labelInput]="'Quality of Images'"
+                [placeHolderInput]="'Enter the quality of your images'"
+                [maxLengthInput]="25"
+                [formControl]="quality"
+            />
+        </div>
+        <div class="buttonCreatePlanInvesments">
+            <button (click)="onGenerateImage()">Generate Images</button>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="imageGenerateResponse">
+        <div class="responseContainer">
+           <img  [src]="imageGenerateResponse.signedImageUri" alt="Generated Image" />
+        </div>
+    </div>
+</section>
