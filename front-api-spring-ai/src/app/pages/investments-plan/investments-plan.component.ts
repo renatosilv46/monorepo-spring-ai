@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InvestmentsService } from '../../shared/services/investments.service';
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './investments-plan.component.html',
   styleUrl: './investments-plan.component.scss'
 })
-export class InvestmentsPlanComponent implements OnInit {
+export class InvestmentsPlanComponent implements OnDestroy {
   private readonly destroySubscribe$ = new Subject<void>();
   protected invesmentsPlanResponse!: InvesmentsPlanResponseDto;
   profileControl = new FormControl('', [Validators.required]);
@@ -22,8 +22,11 @@ export class InvestmentsPlanComponent implements OnInit {
 
   constructor(private readonly investmentsService: InvestmentsService) {}
   
-  ngOnInit(): void { }
-
+  ngOnDestroy(): void {
+    this.destroySubscribe$.next();
+    this.destroySubscribe$.complete();
+  }
+  
   onGetInvestmentPlan(): void {
 
     const requestInvesmentsPlan: InvesmentsPlanRequestDto = {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { ImageGenerateRequestDto, ImageGenerateResponseDto } from '../../shared/
   templateUrl: './image-generator.component.html',
   styleUrl: './image-generator.component.scss'
 })
-export class ImageGeneratorComponent {
+export class ImageGeneratorComponent implements OnDestroy{
   protected imageGenerateResponse!: ImageGenerateResponseDto;
   private readonly destroySubscribe$ = new Subject<void>();
   prompt = new FormControl('', [Validators.required]);
@@ -23,6 +23,11 @@ export class ImageGeneratorComponent {
   height = new FormControl('');
 
   constructor(private readonly imageService: ImageService) {}
+
+  ngOnDestroy(): void {
+    this.destroySubscribe$.next();
+    this.destroySubscribe$.complete();
+  }
 
   onGenerateImage(): void {
 
