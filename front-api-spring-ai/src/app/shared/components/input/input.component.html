@@ -8,8 +8,8 @@
         [type]="typeInput()"
         [placeholder]="placeHolderInput()"
         [maxLength]="maxLengthInput()"
-        [disabled]="isDisabled"
-        [value]="value"
+        [disabled]="isDisabled()"
+        [value]="value()"
         (input)="onInput($event)"
         (blur)="onTouched()"
     />

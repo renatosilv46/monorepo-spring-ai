@@ -1,12 +1,11 @@
-import { Component, forwardRef, input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
-
-export type InputMask = 'currency' | 'date' | 'none';
+import { Component, forwardRef, input, signal } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputMask } from '../../dtos/input-mask.dto';
+import MaskInputHelper from '../../helpers/mask-input.helper';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -25,8 +24,8 @@ export class InputComponent implements ControlValueAccessor {
   readonly maskInput = input<InputMask>('none');
   readonly maxLengthInput = input<number | null>(null);
 
-  value: string = '';
-  isDisabled: boolean = false;
+  value = signal('');
+  isDisabled = signal(false)
 
   onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
@@ -35,11 +34,11 @@ export class InputComponent implements ControlValueAccessor {
   writeValue(value: string): void {
 
     if(value === null || value === '') {
-      this.value = '';
+      this.value.set('');
       return;
     }
 
-    this.value = value ?? '';
+    this.value.set(value ?? '');
   }
 
   registerOnChange(fn: (value: string) => void): void {
@@ -51,55 +50,16 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.isDisabled = isDisabled;
+    this.isDisabled.set(isDisabled);
   }
 
   onInput(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
 
-    const valueFormatted = this.delegateMask(inputValue);
+    const valueFormatted = MaskInputHelper.delegateMask(inputValue, this.maskInput());
 
-    this.value = valueFormatted;
+    this.value.set(valueFormatted);
     this.onChange(valueFormatted);
   }
-
-  delegateMask(value: string): string {
-
-    switch (this.maskInput()) {
-      case 'currency':
-        return this.formatCurrency(value);
-      case 'date':
-        return this.formatDate(value);
-      default:
-        return value;
-    }
-  }
-
-  private formatCurrency(value: string): string {
-
-    const onlyDigits = value.replace(/\D/g, '');
-
-    if(!onlyDigits) return '';
-
-    const number = parseInt(onlyDigits, 10) / 100;
-
-    return Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format(number);
-  }
-
-  private formatDate(value: string): string {
-
-    const onlyDigits = value.replace(/\D/g, '').slice(0, 8);
-
-    const digits = onlyDigits.slice(0, 8);
-
-    if(digits.length <= 2) return digits;
-    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-
-    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
-  }
-
 }

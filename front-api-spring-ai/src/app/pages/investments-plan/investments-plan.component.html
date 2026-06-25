@@ -28,17 +28,17 @@
                 [maskInput]="'date'"
             />
         </div>
-        <div class="buttonCreatePlanInvesments">
+        <div class="buttonCreatePlanInvestments">
             <button (click)="onGetInvestmentPlan()">Get Investment Plan</button>
         </div>
     </div>
 
-    <div class="container" *ngIf="invesmentsPlanResponse">
+    <div class="container" *ngIf="invesmentsPlanResponse()">
         <div class="responseContainer">
             <h3>Investment Plan Response:</h3>
-            <div [innerHTML]="invesmentsPlanResponse.planPayload"></div>
-            <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse.operationId }}</p>
-            <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse.timestamp }}</p>
+            <div [innerHTML]="invesmentsPlanResponse()!.planPayload"></div>
+            <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse()!.operationId }}</p>
+            <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse()!.timestamp }}</p>
         </div>
     </div>
 </section>

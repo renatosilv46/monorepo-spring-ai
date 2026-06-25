@@ -1,10 +1,10 @@
-export interface InvesmentsPlanRequestDto {
+export interface InvestmentsPlanRequestDto {
     profile: string;
     value: string;
     period: string;
 }
 
-export interface InvesmentsPlanResponseDto {
+export interface InvestmentsPlanResponseDto {
     operationId: string;
     planPayload: string;
     timestamp: string;

@@ -31,9 +31,9 @@
         </div>
     </div>
 
-    <div class="container" *ngIf="imageGenerateResponse">
+    <div class="container" *ngIf="imageGenerateResponse()">
         <div class="responseContainer">
-           <img  [src]="imageGenerateResponse.signedImageUri" alt="Generated Image" />
+           <img  [src]="imageGenerateResponse()!.signedImageUri" alt="Generated Image" />
         </div>
     </div>
 </section>

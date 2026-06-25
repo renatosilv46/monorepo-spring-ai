@@ -1,24 +1,24 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {InvesmentsPlanRequestDto, InvesmentsPlanResponseDto } from '../dtos/investments-plan.dto';
+import { InvestmentsPlanRequestDto, InvestmentsPlanResponseDto } from '../dtos/investments-plan.dto';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvestmentsService {
+  
+  private readonly httpClient = inject(HttpClient);
+  private readonly hostApi = environment.SPRING_AI_API_URL;
 
-  constructor(private readonly http: HttpClient) { 
+  getInvestmentPlan(request: InvestmentsPlanRequestDto): Observable<InvestmentsPlanResponseDto> {
+    
+    const params = new HttpParams()
+    .set('profile', request.profile)
+    .set('value', request.value)
+    .set('period', request.period);
 
-  }
-
-  getInvestmentPlan(request: InvesmentsPlanRequestDto): Observable<InvesmentsPlanResponseDto> {
-
-    const httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.get<InvesmentsPlanResponseDto>(
-      `http://localhost:8080/api/v1/investments?profile=${request.profile}&value=${request.value}&period=${request.period}`, { headers: httpHeaders });
+    return this.httpClient.get<InvestmentsPlanResponseDto>(`${this.hostApi}/investments`, { params });
   }
 }

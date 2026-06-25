@@ -1,10 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { InputComponent } from '../../shared/components/input/input.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InvestmentsService } from '../../shared/services/investments.service';
-import { Subject, takeUntil } from 'rxjs';
-import { InvesmentsPlanRequestDto, InvesmentsPlanResponseDto } from '../../shared/dtos/investments-plan.dto';
+import { InvestmentsPlanRequestDto, InvestmentsPlanResponseDto } from '../../shared/dtos/investments-plan.dto';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-investments-plan',
@@ -13,34 +13,47 @@ import { CommonModule } from '@angular/common';
   templateUrl: './investments-plan.component.html',
   styleUrl: './investments-plan.component.scss'
 })
-export class InvestmentsPlanComponent implements OnDestroy {
-  private readonly destroySubscribe$ = new Subject<void>();
-  protected invesmentsPlanResponse!: InvesmentsPlanResponseDto;
-  profileControl = new FormControl('', [Validators.required]);
-  amountControl = new FormControl('', [Validators.required, Validators.min(0)]);
-  durationControl = new FormControl('', [Validators.required, Validators.min(1), Validators.maxLength(10)]);
+export class InvestmentsPlanComponent {
 
-  constructor(private readonly investmentsService: InvestmentsService) {}
-  
-  ngOnDestroy(): void {
-    this.destroySubscribe$.next();
-    this.destroySubscribe$.complete();
-  }
+  private readonly investmentsService = inject(InvestmentsService);
+
+  private readonly destroyRef = inject(DestroyRef);
+  protected invesmentsPlanResponse = signal<InvestmentsPlanResponseDto | null>(null);
+
+  profileControl = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required]
+  });
+
+  amountControl = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(0)]
+  });
+
+  durationControl = new FormControl<string>('', {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(1), Validators.maxLength(10)]
+  });
   
   onGetInvestmentPlan(): void {
 
-    const requestInvesmentsPlan: InvesmentsPlanRequestDto = {
-      profile: String(this.profileControl.value),
-      value : String(this.amountControl.value),
-      period: String(this.durationControl.value)
+    const requestInvesmentsPlan: InvestmentsPlanRequestDto = {
+      profile: this.profileControl.value,
+      value : this.amountControl.value,
+      period: this.durationControl.value
     };
 
     this.investmentsService.getInvestmentPlan(requestInvesmentsPlan)
-    .pipe(takeUntil(this.destroySubscribe$))
-    .subscribe((response) => {
-      this.invesmentsPlanResponse = response;
+    .pipe(takeUntilDestroyed(this.destroyRef))
+    .subscribe({
+    
+      next: (response: InvestmentsPlanResponseDto) => {
+        this.invesmentsPlanResponse.set(response);
+      }, 
+
+      error: (error: any) => {
+        console.error('Error fetching investment plan:', error);
+      }
     });
   }
-
-
 }
