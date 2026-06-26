@@ -10,13 +10,16 @@ export class LanguageService {
   private language = signal('en');
 
   constructor() {
-    this.translate.use('en');
-    effect(() => {
-      this.translate.use(this.language());
-    })
+    this.translate.addLangs(['en', 'pt']);
+    this.translate.use(this.language());
   }
 
   changeLanguage(language: string): void {
     this.language.set(language);
+    this.translate.use(language);
+  }
+
+  get currentLanguage(): string {
+    return this.language();
   }
 }

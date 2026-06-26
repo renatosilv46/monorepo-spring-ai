@@ -6,11 +6,12 @@ import { InvestmentsPlanRequestDto, InvestmentsPlanResponseDto } from '../../sha
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LanguageToggleComponent } from '../../shared/components/language-toggle/language-toggle.component';
 
 @Component({
   selector: 'app-investments-plan',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, CommonModule, TranslatePipe],
+  imports: [InputComponent, ReactiveFormsModule, CommonModule, TranslatePipe, LanguageToggleComponent],
   templateUrl: './investments-plan.component.html',
   styleUrl: './investments-plan.component.scss'
 })
