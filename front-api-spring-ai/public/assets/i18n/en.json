@@ -1,0 +1,14 @@
+{
+    "investmentsPlan": {
+        "title": "Investment Plan",
+        "profile": "Profile",
+        "amount": "Amount",
+        "duration": "Duration",
+        "placeHolder": {
+            "profile": "Select your profile",
+            "amount": "Enter the amount",
+            "duration": "Enter the duration"
+        },
+        "btnGetPlan": "Get Investment Plan"
+    }
+}

@@ -5,16 +5,16 @@ import { InvestmentsService } from '../../shared/services/investments.service';
 import { InvestmentsPlanRequestDto, InvestmentsPlanResponseDto } from '../../shared/dtos/investments-plan.dto';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-investments-plan',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, CommonModule],
+  imports: [InputComponent, ReactiveFormsModule, CommonModule, TranslatePipe],
   templateUrl: './investments-plan.component.html',
   styleUrl: './investments-plan.component.scss'
 })
 export class InvestmentsPlanComponent {
-
   private readonly investmentsService = inject(InvestmentsService);
 
   private readonly destroyRef = inject(DestroyRef);

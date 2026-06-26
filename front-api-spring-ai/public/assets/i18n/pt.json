@@ -1,0 +1,14 @@
+{
+    "investmentsPlan": {
+        "title": "Plano de Investimentos",
+        "profile": "Perfil",
+        "amount": "Valor",
+        "duration": "Período",
+        "placeHolder": {
+            "profile": "Selecione seu perfil",
+            "amount": "Digite o valor",
+            "duration": "Digite o período"
+        },
+        "btnGetPlan": "Obter Plano de Investimentos"
+    }
+}

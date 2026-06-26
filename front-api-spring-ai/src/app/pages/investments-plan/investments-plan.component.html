@@ -2,8 +2,8 @@
     <div class="container">
         <div class="inputContainer">
             <app-input
-                [labelInput]="'Invesments Profile'"
-                [placeHolderInput]="'Enter your investment profile'"
+                [labelInput]="'investmentsPlan.profile' | translate"
+                [placeHolderInput]="'investmentsPlan.placeHolder.profile' | translate"
                 [formControl]="profileControl"
                 [maxLengthInput]="25"
 
@@ -11,8 +11,8 @@
         </div>
           <div class="inputContainer">
             <app-input
-                [labelInput]="'Investment Amount'"
-                [placeHolderInput]="'Enter the amount you want to invest'"
+                [labelInput]="'investmentsPlan.amount' | translate"
+                [placeHolderInput]="'investmentsPlan.placeHolder.amount' | translate"
                 [formControl]="amountControl"
                 [maskInput]="'currency'"
                 [maxLengthInput]="25"
@@ -21,21 +21,21 @@
         </div>
        <div class="inputContainer">
             <app-input
-                [labelInput]="'Investment Duration'"
-                [placeHolderInput]="'Enter the duration of your investment (Until)'"
+                [labelInput]="'investmentsPlan.duration' | translate"
+                [placeHolderInput]="'investmentsPlan.placeHolder.duration' | translate"
                 [maxLengthInput]="10"
                 [formControl]="durationControl"
                 [maskInput]="'date'"
             />
         </div>
         <div class="buttonCreatePlanInvestments">
-            <button (click)="onGetInvestmentPlan()">Get Investment Plan</button>
+            <button (click)="onGetInvestmentPlan()">{{ 'investmentsPlan.btnGetPlan' | translate }}</button>
         </div>
     </div>
 
     <div class="container" *ngIf="invesmentsPlanResponse()">
         <div class="responseContainer">
-            <h3>Investment Plan Response:</h3>
+            <h3>{{ 'investmentsPlan.title' | translate }}</h3>
             <div [innerHTML]="invesmentsPlanResponse()!.planPayload"></div>
             <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse()!.operationId }}</p>
             <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse()!.timestamp }}</p>
