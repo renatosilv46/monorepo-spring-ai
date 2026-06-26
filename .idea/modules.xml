@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/spring-ai-rntgs.iml" filepath="$PROJECT_DIR$/.idea/spring-ai-rntgs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/monorepo-spring-ai.iml" filepath="$PROJECT_DIR$/.idea/monorepo-spring-ai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-ai-rntgs/spring-ai-rntgs.iml" filepath="$PROJECT_DIR$/spring-ai-rntgs/spring-ai-rntgs.iml" />
     </modules>
   </component>
 </project>

@@ -6,6 +6,8 @@ import com.spring.ai.application.ports.services.InvestmentServicePort;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -17,18 +19,27 @@ public class InvestmentServiceImpl implements InvestmentServicePort {
 
     private final ChatModel chatModel;
     private final PromptTemplateConfigure promptTemplateConfigure;
+    private final MessageSource messageSource;
+    private final static String TEMPLATE_PATH = "investments_plan";
 
     public InvestmentServiceImpl(ChatModel chatModel,
-                                 PromptTemplateConfigure promptTemplateConfigure) {
+                                 PromptTemplateConfigure promptTemplateConfigure,
+                                 MessageSource messageSource) {
         this.chatModel = chatModel;
         this.promptTemplateConfigure = promptTemplateConfigure;
+        this.messageSource = messageSource;
     }
 
     @Override
     public InvestmentResponse createInvestmentPlan(String value, String profile, String period) {
 
+        final String template = messageSource.getMessage(
+                TEMPLATE_PATH,
+                null,
+                LocaleContextHolder.getLocale());
+
         final String promptTemplate = String.format(
-                promptTemplateConfigure.getCreateInvestmentsPlan(),
+                template,
                 period,
                 profile,
                 value);
