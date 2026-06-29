@@ -6,14 +6,13 @@ import { TranslatePipe } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslatePipe],
   templateUrl: './button-primary.component.html',
-  styleUrl: './button-primary.component.scss'
+  styleUrl: './button-primary.component.scss',
 })
 export class ButtonPrimaryComponent {
-
   onClick = output<void>();
   titleButton = input<string>();
 
   emitEventClick() {
-   this.onClick.emit();
+    this.onClick.emit();
   }
 }

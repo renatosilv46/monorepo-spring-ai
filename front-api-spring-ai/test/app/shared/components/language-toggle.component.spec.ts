@@ -8,9 +8,8 @@ describe('LanguageToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LanguageToggleComponent]
-    })
-    .compileComponents();
+      imports: [LanguageToggleComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LanguageToggleComponent);
     component = fixture.componentInstance;

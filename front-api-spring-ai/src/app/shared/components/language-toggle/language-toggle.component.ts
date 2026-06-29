@@ -6,16 +6,13 @@ import { LanguageService } from '../../services/language.service';
   standalone: true,
   imports: [],
   templateUrl: './language-toggle.component.html',
-  styleUrl: './language-toggle.component.scss'
+  styleUrl: './language-toggle.component.scss',
 })
 export class LanguageToggleComponent {
-
   protected readonly languageService = inject(LanguageService);
 
-  toggleLanguage() : void {
+  toggleLanguage(): void {
     const current = this.languageService.currentLanguage;
-    this.languageService.changeLanguage(
-      current === 'en' ? 'pt' : 'en'
-    );
+    this.languageService.changeLanguage(current === 'en' ? 'pt' : 'en');
   }
 }

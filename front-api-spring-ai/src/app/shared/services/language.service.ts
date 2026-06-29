@@ -3,10 +3,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
-
   private translate = inject(TranslateService);
   private cookie = inject(CookieService);
   private language = signal('en');
@@ -18,7 +17,7 @@ export class LanguageService {
 
   changeLanguage(language: string): void {
     this.language.set(language);
-    this.cookie.put('language',language)
+    this.cookie.put('language', language);
     this.translate.use(language);
   }
 

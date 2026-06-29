@@ -3,12 +3,12 @@ import { InvestmentsPlanComponent } from './pages/investments-plan/investments-p
 import { ImageGeneratorComponent } from './pages/image-generator/image-generator.component';
 
 export const routes: Routes = [
-    {
-        path: 'investments-plan',
-        component: InvestmentsPlanComponent
-    },
-    {
-        path: 'image-generator',
-        component: ImageGeneratorComponent
-    }
+  {
+    path: 'investments-plan',
+    component: InvestmentsPlanComponent,
+  },
+  {
+    path: 'image-generator',
+    component: ImageGeneratorComponent,
+  },
 ];

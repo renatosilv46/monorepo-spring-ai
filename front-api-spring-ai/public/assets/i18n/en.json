@@ -1,26 +1,26 @@
 {
-    "investmentsPlan": {
-        "title": "Investment Plan",
-        "profile": "Profile",
-        "amount": "Amount",
-        "duration": "Duration",
-        "placeHolder": {
-            "profile": "Select your profile",
-            "amount": "Enter the amount",
-            "duration": "Enter the duration"
-        },
-        "btnGetPlan": "Get Investment Plan"
+  "investmentsPlan": {
+    "title": "Investment Plan",
+    "profile": "Profile",
+    "amount": "Amount",
+    "duration": "Duration",
+    "placeHolder": {
+      "profile": "Select your profile",
+      "amount": "Enter the amount",
+      "duration": "Enter the duration"
     },
-    "imageGenerator": {
-        "title": "Generate your image",
-        "prompt": "Prompt",
-        "quality": "Quality",
-        "quantity": "Quantity",
-        "placeHolder": {
-            "prompt":"Type image generate prompt",
-            "quality":"Type quality image",
-            "quantity":"Type quantity of images"
-        },
-        "btnGenerateImage": "Generate Images"
-    }
+    "btnGetPlan": "Get Investment Plan"
+  },
+  "imageGenerator": {
+    "title": "Generate your image",
+    "prompt": "Prompt",
+    "quality": "Quality",
+    "quantity": "Quantity",
+    "placeHolder": {
+      "prompt": "Type image generate prompt",
+      "quality": "Type quality image",
+      "quantity": "Type quantity of images"
+    },
+    "btnGenerateImage": "Generate Images"
+  }
 }

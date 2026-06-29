@@ -1,42 +1,41 @@
 <app-language-toggle></app-language-toggle>
 <section>
-    <div class="container">
-        <div class="inputContainer">
-            <app-input
-                [labelInput]="'imageGenerator.prompt' | translate"
-                [placeHolderInput]="'imageGenerator.placeHolder.prompt' | translate"
-                [formControl]="prompt"
-                [maxLengthInput]="50"
-
-            />
-        </div>
-          <div class="inputContainer">
-            <app-input
-                [labelInput]="'imageGenerator.quantity' | translate"
-                [placeHolderInput]="'imageGenerator.placeHolder.quantity' | translate"
-                [formControl]="quantity"
-                [maxLengthInput]="25"
-
-            />
-        </div>
-       <div class="inputContainer">
-            <app-input
-                [labelInput]="'imageGenerator.quality' | translate"
-                [placeHolderInput]="'imageGenerator.placeHolder.quantity' | translate"
-                [maxLengthInput]="25"
-                [formControl]="quality"
-            />
-        </div>
-        <div>
-            <app-button-primary
-                (onClick)="clickGenerateImage()",
-                [titleButton]="'imageGenerator.btnGenerateImage' | translate"
-            ></app-button-primary>
-        </div>
+  <div class="container">
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'imageGenerator.prompt' | translate"
+        [placeHolderInput]="'imageGenerator.placeHolder.prompt' | translate"
+        [formControl]="prompt"
+        [maxLengthInput]="50"
+      />
     </div>
-    <div class="container" *ngIf="imageGenerateResponse()">
-        <div class="responseContainer">
-           <img  [src]="imageGenerateResponse()!.signedImageUri" alt="Generated Image" />
-        </div>
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'imageGenerator.quantity' | translate"
+        [placeHolderInput]="'imageGenerator.placeHolder.quantity' | translate"
+        [formControl]="quantity"
+        [maxLengthInput]="25"
+      />
     </div>
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'imageGenerator.quality' | translate"
+        [placeHolderInput]="'imageGenerator.placeHolder.quantity' | translate"
+        [maxLengthInput]="25"
+        [formControl]="quality"
+      />
+    </div>
+    <div>
+      <app-button-primary
+        (onClick)="clickGenerateImage()"
+        ,
+        [titleButton]="'imageGenerator.btnGenerateImage' | translate"
+      ></app-button-primary>
+    </div>
+  </div>
+  <div class="container" *ngIf="imageGenerateResponse()">
+    <div class="responseContainer">
+      <img [src]="imageGenerateResponse()!.signedImageUri" alt="Generated Image" />
+    </div>
+  </div>
 </section>

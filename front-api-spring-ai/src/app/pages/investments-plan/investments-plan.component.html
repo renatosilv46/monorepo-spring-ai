@@ -1,49 +1,50 @@
 <div class="language-toggle">
-    <app-language-toggle></app-language-toggle>
+  <app-language-toggle></app-language-toggle>
 </div>
 <section>
-    <div class="container">
-        <div class="inputContainer">
-            <app-input
-                [labelInput]="'investmentsPlan.profile' | translate"
-                [placeHolderInput]="'investmentsPlan.placeHolder.profile' | translate"
-                [formControl]="profileControl"
-                [maxLengthInput]="25"
-            />
-        </div>
-          <div class="inputContainer">
-            <app-input
-                [labelInput]="'investmentsPlan.amount' | translate"
-                [placeHolderInput]="'investmentsPlan.placeHolder.amount' | translate"
-                [formControl]="amountControl"
-                [maskInput]="'currency'"
-                [maxLengthInput]="25"
-
-            />
-        </div>
-       <div class="inputContainer">
-            <app-input
-                [labelInput]="'investmentsPlan.duration' | translate"
-                [placeHolderInput]="'investmentsPlan.placeHolder.duration' | translate"
-                [maxLengthInput]="10"
-                [formControl]="durationControl"
-                [maskInput]="'date'"
-            />
-        </div>
-        <div class="buttonCreatePlanInvestments">
-            <app-button-primary
-                (onClick)="clickGetInvestmentsPlan()",
-                [titleButton]="'investmentsPlan.btnGetPlan' | translate">
-            </app-button-primary>
-        </div>
+  <div class="container">
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'investmentsPlan.profile' | translate"
+        [placeHolderInput]="'investmentsPlan.placeHolder.profile' | translate"
+        [formControl]="profileControl"
+        [maxLengthInput]="25"
+      />
     </div>
-
-    <div class="container" *ngIf="invesmentsPlanResponse()">
-        <div class="responseContainer">
-            <h3>{{ 'investmentsPlan.title' | translate }}</h3>
-            <div [innerHTML]="invesmentsPlanResponse()!.planPayload"></div>
-            <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse()!.operationId }}</p>
-            <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse()!.timestamp }}</p>
-        </div>
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'investmentsPlan.amount' | translate"
+        [placeHolderInput]="'investmentsPlan.placeHolder.amount' | translate"
+        [formControl]="amountControl"
+        [maskInput]="'currency'"
+        [maxLengthInput]="25"
+      />
     </div>
+    <div class="inputContainer">
+      <app-input
+        [labelInput]="'investmentsPlan.duration' | translate"
+        [placeHolderInput]="'investmentsPlan.placeHolder.duration' | translate"
+        [maxLengthInput]="10"
+        [formControl]="durationControl"
+        [maskInput]="'date'"
+      />
+    </div>
+    <div class="buttonCreatePlanInvestments">
+      <app-button-primary
+        (onClick)="clickGetInvestmentsPlan()"
+        ,
+        [titleButton]="'investmentsPlan.btnGetPlan' | translate"
+      >
+      </app-button-primary>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="invesmentsPlanResponse()">
+    <div class="responseContainer">
+      <h3>{{ 'investmentsPlan.title' | translate }}</h3>
+      <div [innerHTML]="invesmentsPlanResponse()!.planPayload"></div>
+      <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse()!.operationId }}</p>
+      <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse()!.timestamp }}</p>
+    </div>
+  </div>
 </section>

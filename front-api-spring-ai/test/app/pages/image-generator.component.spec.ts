@@ -8,9 +8,8 @@ describe('ImageGeneratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageGeneratorComponent]
-    })
-    .compileComponents();
+      imports: [ImageGeneratorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ImageGeneratorComponent);
     component = fixture.componentInstance;

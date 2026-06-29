@@ -18,10 +18,10 @@ import { ButtonPrimaryComponent } from '../../shared/components/button-primary/b
     CommonModule,
     TranslatePipe,
     LanguageToggleComponent,
-    ButtonPrimaryComponent
+    ButtonPrimaryComponent,
   ],
   templateUrl: './investments-plan.component.html',
-  styleUrl: './investments-plan.component.scss'
+  styleUrl: './investments-plan.component.scss',
 })
 export class InvestmentsPlanComponent {
   private readonly destroyRef = inject(DestroyRef);
@@ -30,42 +30,41 @@ export class InvestmentsPlanComponent {
 
   protected profileControl = new FormControl<string>('', {
     nonNullable: true,
-    validators: [Validators.required]
+    validators: [Validators.required],
   });
 
   protected amountControl = new FormControl<string>('', {
     nonNullable: true,
-    validators: [Validators.required, Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)],
   });
 
   protected durationControl = new FormControl<string>('', {
     nonNullable: true,
-    validators: [Validators.required, Validators.min(1), Validators.maxLength(10)]
+    validators: [Validators.required, Validators.min(1), Validators.maxLength(10)],
   });
 
   protected clickGetInvestmentsPlan() {
     this.onGetInvestmentPlan();
   }
-  
-  private onGetInvestmentPlan(): void {
 
+  private onGetInvestmentPlan(): void {
     const requestInvesmentsPlan: InvestmentsPlanRequestDto = {
       profile: this.profileControl.value,
-      value : this.amountControl.value,
-      period: this.durationControl.value
+      value: this.amountControl.value,
+      period: this.durationControl.value,
     };
 
-    this.investmentsService.getInvestmentPlan(requestInvesmentsPlan)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe({
-    
-      next: (response: InvestmentsPlanResponseDto) => {
-        this.invesmentsPlanResponse.set(response);
-      }, 
+    this.investmentsService
+      .getInvestmentPlan(requestInvesmentsPlan)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response: InvestmentsPlanResponseDto) => {
+          this.invesmentsPlanResponse.set(response);
+        },
 
-      error: (error: any) => {
-        console.error('Error fetching investment plan:', error);
-      }
-    });
+        error: (error: any) => {
+          console.error('Error fetching investment plan:', error);
+        },
+      });
   }
 }

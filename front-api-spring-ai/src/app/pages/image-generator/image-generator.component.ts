@@ -21,17 +21,16 @@ import { LanguageToggleComponent } from '../../shared/components/language-toggle
     LanguageToggleComponent,
   ],
   templateUrl: './image-generator.component.html',
-  styleUrl: './image-generator.component.scss'
+  styleUrl: './image-generator.component.scss',
 })
 export class ImageGeneratorComponent {
-
   private readonly destroyRef = inject(DestroyRef);
   private readonly imageService = inject(ImageService);
   protected imageGenerateResponse = signal<ImageGenerateResponseDto | null>(null);
 
   prompt = new FormControl<string>('', {
     nonNullable: true,
-    validators: [Validators.required]
+    validators: [Validators.required],
   });
 
   quantity = new FormControl<string>('');
@@ -44,19 +43,19 @@ export class ImageGeneratorComponent {
   }
 
   private onGenerateImage(): void {
-
     const requestImageGenerate: ImageGenerateRequestDto = {
       prompt: this.prompt.value,
       quantity: Number(this.quantity.value),
       quality: String(this.quality.value),
       width: Number(this.width.value),
-      height: Number(this.height.value)
+      height: Number(this.height.value),
     };
 
-    this.imageService.getGeneratedImage(requestImageGenerate)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe((response) => {
-      this.imageGenerateResponse.set(response);
-    });
+    this.imageService
+      .getGeneratedImage(requestImageGenerate)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((response) => {
+        this.imageGenerateResponse.set(response);
+      });
   }
 }

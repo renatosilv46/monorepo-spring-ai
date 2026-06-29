@@ -10,14 +10,13 @@ import MaskInputHelper from '../../helpers/mask-input.helper';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
 })
 export class InputComponent implements ControlValueAccessor {
-
   readonly labelInput = input<string>('');
   readonly placeHolderInput = input<string>('');
   readonly typeInput = input<string>('text');
@@ -25,15 +24,13 @@ export class InputComponent implements ControlValueAccessor {
   readonly maxLengthInput = input<number | null>(null);
 
   value = signal('');
-  isDisabled = signal(false)
+  isDisabled = signal(false);
 
   onChange: (value: string) => void = () => {};
   onTouched: () => void = () => {};
-  
- 
-  writeValue(value: string): void {
 
-    if(value === null || value === '') {
+  writeValue(value: string): void {
+    if (value === null || value === '') {
       this.value.set('');
       return;
     }
