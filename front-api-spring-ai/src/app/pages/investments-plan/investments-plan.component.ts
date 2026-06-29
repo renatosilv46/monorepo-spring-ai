@@ -7,36 +7,47 @@ import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LanguageToggleComponent } from '../../shared/components/language-toggle/language-toggle.component';
+import { ButtonPrimaryComponent } from '../../shared/components/button-primary/button-primary.component';
 
 @Component({
   selector: 'app-investments-plan',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, CommonModule, TranslatePipe, LanguageToggleComponent],
+  imports: [
+    InputComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    TranslatePipe,
+    LanguageToggleComponent,
+    ButtonPrimaryComponent
+  ],
   templateUrl: './investments-plan.component.html',
   styleUrl: './investments-plan.component.scss'
 })
 export class InvestmentsPlanComponent {
-  private readonly investmentsService = inject(InvestmentsService);
-
   private readonly destroyRef = inject(DestroyRef);
+  private readonly investmentsService = inject(InvestmentsService);
   protected invesmentsPlanResponse = signal<InvestmentsPlanResponseDto | null>(null);
 
-  profileControl = new FormControl<string>('', {
+  protected profileControl = new FormControl<string>('', {
     nonNullable: true,
     validators: [Validators.required]
   });
 
-  amountControl = new FormControl<string>('', {
+  protected amountControl = new FormControl<string>('', {
     nonNullable: true,
     validators: [Validators.required, Validators.min(0)]
   });
 
-  durationControl = new FormControl<string>('', {
+  protected durationControl = new FormControl<string>('', {
     nonNullable: true,
     validators: [Validators.required, Validators.min(1), Validators.maxLength(10)]
   });
+
+  protected clickGetInvestmentsPlan() {
+    this.onGetInvestmentPlan();
+  }
   
-  onGetInvestmentPlan(): void {
+  private onGetInvestmentPlan(): void {
 
     const requestInvesmentsPlan: InvestmentsPlanRequestDto = {
       profile: this.profileControl.value,

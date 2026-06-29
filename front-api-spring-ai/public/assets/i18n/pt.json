@@ -10,5 +10,17 @@
             "duration": "Digite o período"
         },
         "btnGetPlan": "Obter Plano de Investimentos"
+    },
+    "imageGenerator": {
+        "title": "Gere sua imagem",
+        "prompt": "Prompt",
+        "quality": "Qualidade",
+        "quantity": "Quantidade",
+        "placeHolder": {
+            "prompt":"Digite o prompt para geração da imagem",
+            "quality":"Digite a qualidade de imagem desejada",
+            "quantity":"Digite quantidade de imagens desejada"
+        },
+        "btnGenerateImage": "Gerar imagens"
     }
 }

@@ -5,11 +5,21 @@ import { CommonModule } from '@angular/common';
 import { ImageService } from '../../shared/services/image.service';
 import { ImageGenerateRequestDto, ImageGenerateResponseDto } from '../../shared/dtos/image-generate.dto';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ButtonPrimaryComponent } from '../../shared/components/button-primary/button-primary.component';
+import { LanguageToggleComponent } from '../../shared/components/language-toggle/language-toggle.component';
 
 @Component({
   selector: 'app-image-generator',
   standalone: true,
-  imports: [InputComponent, ReactiveFormsModule, CommonModule],
+  imports: [
+    InputComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    TranslatePipe,
+    ButtonPrimaryComponent,
+    LanguageToggleComponent,
+  ],
   templateUrl: './image-generator.component.html',
   styleUrl: './image-generator.component.scss'
 })
@@ -23,12 +33,17 @@ export class ImageGeneratorComponent {
     nonNullable: true,
     validators: [Validators.required]
   });
+
   quantity = new FormControl<string>('');
   quality = new FormControl<string>('');
   width = new FormControl<string>('');
   height = new FormControl<string>('');
 
-  onGenerateImage(): void {
+  protected clickGenerateImage() {
+    this.onGenerateImage();
+  }
+
+  private onGenerateImage(): void {
 
     const requestImageGenerate: ImageGenerateRequestDto = {
       prompt: this.prompt.value,

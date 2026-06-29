@@ -31,7 +31,10 @@
             />
         </div>
         <div class="buttonCreatePlanInvestments">
-            <button (click)="onGetInvestmentPlan()">{{ 'investmentsPlan.btnGetPlan' | translate }}</button>
+            <app-button-primary
+                (onClick)="clickGetInvestmentsPlan()",
+                [titleButton]="'investmentsPlan.btnGetPlan' | translate">
+            </app-button-primary>
         </div>
     </div>
 
