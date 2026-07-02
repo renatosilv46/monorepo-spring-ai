@@ -1,11 +1,14 @@
 package com.spring.ai.config;
 
 import com.spring.ai.application.ports.in.CreateInvestmentPlanUseCase;
+import com.spring.ai.application.ports.in.CreateUserUseCase;
 import com.spring.ai.application.ports.out.AzureStorageServicePort;
 import com.spring.ai.application.ports.out.ImageServicePort;
 import com.spring.ai.application.ports.in.ImageUseCase;
 import com.spring.ai.application.ports.out.InvestmentServicePort;
+import com.spring.ai.application.ports.out.UserRepository;
 import com.spring.ai.application.usecases.CreateInvesmentPlanUseCaseImpl;
+import com.spring.ai.application.usecases.CreateUserUseCaseImpl;
 import com.spring.ai.application.usecases.ImageUseCaseImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,5 +27,10 @@ public class UseCaseBeanConfig {
             InvestmentServicePort investmentServicePort
     ) {
         return new CreateInvesmentPlanUseCaseImpl(investmentServicePort);
+    }
+
+    @Bean
+    public CreateUserUseCase createUserUseCase(UserRepository userRepository) {
+        return new CreateUserUseCaseImpl(userRepository);
     }
 }

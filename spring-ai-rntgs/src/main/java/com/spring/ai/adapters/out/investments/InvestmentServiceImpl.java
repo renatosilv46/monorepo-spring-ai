@@ -1,6 +1,6 @@
 package com.spring.ai.adapters.out.investments;
 
-import com.spring.ai.adapters.in.dtos.CreateInvestmentPlanResponse;
+import com.spring.ai.adapters.in.dtos.investment_plan.CreateInvestmentPlanResponse;
 import com.spring.ai.adapters.out.helper.HtmlHelper;
 import com.spring.ai.application.ports.out.InvestmentServicePort;
 import org.springframework.ai.chat.model.ChatModel;

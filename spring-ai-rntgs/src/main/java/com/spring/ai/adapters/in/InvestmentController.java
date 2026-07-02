@@ -1,6 +1,6 @@
 package com.spring.ai.adapters.in;
 
-import com.spring.ai.adapters.in.dtos.CreateInvestmentPlanResponse;
+import com.spring.ai.adapters.in.dtos.investment_plan.CreateInvestmentPlanResponse;
 import com.spring.ai.application.ports.in.CreateInvestmentPlanUseCase;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
