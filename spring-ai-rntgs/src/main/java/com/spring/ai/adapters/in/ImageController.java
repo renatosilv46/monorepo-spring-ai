@@ -1,7 +1,7 @@
 package com.spring.ai.adapters.in;
 
 import com.spring.ai.adapters.in.dtos.ImageResponse;
-import com.spring.ai.application.ports.usecases.ImageUseCase;
+import com.spring.ai.application.ports.in.ImageUseCase;
 import jakarta.annotation.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

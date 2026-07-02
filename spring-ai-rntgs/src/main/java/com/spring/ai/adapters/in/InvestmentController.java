@@ -1,7 +1,7 @@
 package com.spring.ai.adapters.in;
 
-import com.spring.ai.adapters.in.dtos.InvestmentResponse;
-import com.spring.ai.application.ports.services.InvestmentServicePort;
+import com.spring.ai.adapters.in.dtos.CreateInvestmentPlanResponse;
+import com.spring.ai.application.ports.in.CreateInvestmentPlanUseCase;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/investments")
 public class InvestmentController {
 
-    private final InvestmentServicePort investmentServicePort;
+    private final CreateInvestmentPlanUseCase createInvestmentPlanUseCase;
 
-    public InvestmentController(InvestmentServicePort investmentServicePort) {
-        this.investmentServicePort = investmentServicePort;
+    public InvestmentController(CreateInvestmentPlanUseCase createInvestmentPlanUseCase) {
+        this.createInvestmentPlanUseCase = createInvestmentPlanUseCase;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<InvestmentResponse> createInvestmentPlan(
+    public ResponseEntity<CreateInvestmentPlanResponse> createInvestmentPlan(
             @RequestParam String value,
             @RequestParam(defaultValue = "any") String profile,
             @RequestParam String period) {
 
-        InvestmentResponse investmentResponse = investmentServicePort.createInvestmentPlan(value, profile, period);
+        CreateInvestmentPlanResponse investmentResponse = this.createInvestmentPlanUseCase.createInvestmentPlan(value, profile, period);
         return ResponseEntity.ok(investmentResponse);
     }
 }

@@ -3,7 +3,7 @@ package com.spring.ai.adapters.out.azure_storage;
 import com.azure.storage.blob.*;
 import com.azure.storage.blob.sas.BlobSasPermission;
 import com.azure.storage.blob.sas.BlobServiceSasSignatureValues;
-import com.spring.ai.application.ports.services.AzureStorageServicePort;
+import com.spring.ai.application.ports.out.AzureStorageServicePort;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 

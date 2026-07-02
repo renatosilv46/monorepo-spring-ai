@@ -1,4 +1,4 @@
-package com.spring.ai.application.ports.services;
+package com.spring.ai.application.ports.out;
 
 import org.springframework.ai.image.ImageResponse;
 

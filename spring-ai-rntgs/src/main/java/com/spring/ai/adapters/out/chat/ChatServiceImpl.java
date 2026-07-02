@@ -1,6 +1,6 @@
 package com.spring.ai.adapters.out.chat;
 
-import com.spring.ai.application.ports.services.ChatServicePort;
+import com.spring.ai.application.ports.out.ChatServicePort;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;

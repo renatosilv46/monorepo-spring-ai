@@ -1,4 +1,4 @@
-package com.spring.ai.application.ports.services;
+package com.spring.ai.application.ports.out;
 
 public interface AzureStorageServicePort {
     String uploadImage(byte[] imageBytes);

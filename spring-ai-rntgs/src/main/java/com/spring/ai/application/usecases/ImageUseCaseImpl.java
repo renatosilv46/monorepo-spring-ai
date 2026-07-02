@@ -1,8 +1,8 @@
 package com.spring.ai.application.usecases;
 
-import com.spring.ai.application.ports.services.AzureStorageServicePort;
-import com.spring.ai.application.ports.services.ImageServicePort;
-import com.spring.ai.application.ports.usecases.ImageUseCase;
+import com.spring.ai.application.ports.out.AzureStorageServicePort;
+import com.spring.ai.application.ports.out.ImageServicePort;
+import com.spring.ai.application.ports.in.ImageUseCase;
 import org.springframework.ai.image.ImageResponse;
 
 public class ImageUseCaseImpl implements ImageUseCase {

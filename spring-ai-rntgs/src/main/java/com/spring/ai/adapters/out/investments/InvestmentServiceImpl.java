@@ -1,8 +1,8 @@
 package com.spring.ai.adapters.out.investments;
 
-import com.spring.ai.adapters.in.dtos.InvestmentResponse;
+import com.spring.ai.adapters.in.dtos.CreateInvestmentPlanResponse;
 import com.spring.ai.adapters.out.helper.HtmlHelper;
-import com.spring.ai.application.ports.services.InvestmentServicePort;
+import com.spring.ai.application.ports.out.InvestmentServicePort;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -10,28 +10,20 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.UUID;
-
 @Service
 public class InvestmentServiceImpl implements InvestmentServicePort {
 
     private final ChatModel chatModel;
-    private final PromptTemplateConfigure promptTemplateConfigure;
     private final MessageSource messageSource;
     private final static String TEMPLATE_PATH = "investments_plan";
 
-    public InvestmentServiceImpl(ChatModel chatModel,
-                                 PromptTemplateConfigure promptTemplateConfigure,
-                                 MessageSource messageSource) {
+    public InvestmentServiceImpl(ChatModel chatModel, MessageSource messageSource) {
         this.chatModel = chatModel;
-        this.promptTemplateConfigure = promptTemplateConfigure;
         this.messageSource = messageSource;
     }
 
     @Override
-    public InvestmentResponse createInvestmentPlan(String value, String profile, String period) {
+    public CreateInvestmentPlanResponse createInvestmentPlan(String value, String profile, String period) {
 
         final String template = messageSource.getMessage(
                 TEMPLATE_PATH,
@@ -52,10 +44,7 @@ public class InvestmentServiceImpl implements InvestmentServicePort {
             throw new RuntimeException("Failed to generate investment plan.");
         }
 
-        final UUID operationId = UUID.randomUUID();
-        final Timestamp timestamp = Timestamp.from(Instant.now());
-        final String planPayloadHtml = HtmlHelper.parseMarkdownToHtml(response.getResult().getOutput().getText());
-
-        return new InvestmentResponse(operationId, planPayloadHtml, timestamp);
+        return new CreateInvestmentPlanResponse(
+                HtmlHelper.parseMarkdownToHtml(response.getResult().getOutput().getText()));
     }
 }

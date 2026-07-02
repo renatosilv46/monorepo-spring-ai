@@ -1,6 +1,6 @@
 package com.spring.ai.adapters.in;
 
-import com.spring.ai.application.ports.services.ChatServicePort;
+import com.spring.ai.application.ports.out.ChatServicePort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

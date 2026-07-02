@@ -1,6 +1,6 @@
 package com.spring.ai.adapters.out.images;
 
-import com.spring.ai.application.ports.services.ImageServicePort;
+import com.spring.ai.application.ports.out.ImageServicePort;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.ai.openai.OpenAiImageModel;

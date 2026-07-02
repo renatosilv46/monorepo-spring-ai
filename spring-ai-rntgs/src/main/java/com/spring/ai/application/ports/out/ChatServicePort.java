@@ -1,4 +1,4 @@
-package com.spring.ai.application.ports.services;
+package com.spring.ai.application.ports.out;
 
 public interface ChatServicePort {
     String getResponse(String prompt);
