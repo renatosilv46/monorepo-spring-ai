@@ -1,15 +1,8 @@
 package com.spring.ai.config;
 
-import com.spring.ai.application.ports.in.CreateInvestmentPlanUseCase;
-import com.spring.ai.application.ports.in.CreateUserUseCase;
-import com.spring.ai.application.ports.out.AzureStorageServicePort;
-import com.spring.ai.application.ports.out.ImageServicePort;
-import com.spring.ai.application.ports.in.ImageUseCase;
-import com.spring.ai.application.ports.out.InvestmentServicePort;
-import com.spring.ai.application.ports.out.UserRepository;
-import com.spring.ai.application.usecases.CreateInvesmentPlanUseCaseImpl;
-import com.spring.ai.application.usecases.CreateUserUseCaseImpl;
-import com.spring.ai.application.usecases.ImageUseCaseImpl;
+import com.spring.ai.application.ports.in.*;
+import com.spring.ai.application.ports.out.*;
+import com.spring.ai.application.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,5 +25,18 @@ public class UseCaseBeanConfig {
     @Bean
     public CreateUserUseCase createUserUseCase(UserRepository userRepository) {
         return new CreateUserUseCaseImpl(userRepository);
+    }
+
+    @Bean
+    public SaveInvestmentPlanUseCase saveInvestmentPlanUseCase(InvestmentPlanRepository investmentPlanRepository) {
+        return new SaveInvestmentPlanUseCaseImpl(investmentPlanRepository);
+    }
+
+    @Bean
+    public GetUserSessionUseCase getUserSessionUseCase(
+            UserRepository userRepository,
+            InvestmentPlanRepository investmentPlanRepository
+    ) {
+        return new GetUserSessionUseCaseImpl(userRepository, investmentPlanRepository);
     }
 }

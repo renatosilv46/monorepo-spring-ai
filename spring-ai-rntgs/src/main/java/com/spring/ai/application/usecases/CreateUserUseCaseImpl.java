@@ -18,7 +18,6 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     @Override
     public CreateUserResponse createUser(CreateUserRequest userRequest) {
         UserEntity userSaved = this.userRepository.createUser(userRequest);
-
         return new CreateUserResponse(
                 userSaved.getUserId(),
                 userSaved.getUsername(),

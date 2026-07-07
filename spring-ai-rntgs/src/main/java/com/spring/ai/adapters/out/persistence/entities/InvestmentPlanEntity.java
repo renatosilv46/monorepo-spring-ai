@@ -12,7 +12,10 @@ public class InvestmentPlanEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID investmentPlanId;
+
+    @Column(columnDefinition = "TEXT")
     private String investmentPlanHtml;
+
     private Timestamp timestamp;
 
     @ManyToOne(fetch = FetchType.LAZY)
