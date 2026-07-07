@@ -1,0 +1,16 @@
+<section>
+  <div class="container">
+    <div class="content">
+      <app-input
+        [labelInput]="'authentication.username' | translate"
+        [placeHolderInput]="'authentication.placeHolder.username' | translate"
+        [formControl]="usernameControl()"
+        [maxLengthInput]="25"
+      />
+      <div class="button-container">
+        <app-button-primary (onClick)="authenticateUser()" [titleButton]="'authentication.btnAuthenticate' | translate">
+        </app-button-primary>
+      </div>
+    </div>
+  </div>
+</section>

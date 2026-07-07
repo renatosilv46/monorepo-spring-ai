@@ -9,7 +9,8 @@
       "amount": "Digite o valor",
       "duration": "Digite o período"
     },
-    "btnGetPlan": "Obter Plano de Investimentos"
+    "btnGetPlan": "Obter Plano de Investimentos",
+    "btnSavePlan": "Salvar Plano de Investimentos"
   },
   "imageGenerator": {
     "title": "Gere sua imagem",
@@ -22,5 +23,12 @@
       "quantity": "Digite quantidade de imagens desejada"
     },
     "btnGenerateImage": "Gerar imagens"
+  },
+  "authentication": {
+    "username": "Nome de Usuário",
+    "placeHolder": {
+      "username": "Digite seu nome de usuário"
+    },
+    "btnAuthenticate": "Autenticar"
   }
 }

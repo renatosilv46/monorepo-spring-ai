@@ -9,7 +9,8 @@
       "amount": "Enter the amount",
       "duration": "Enter the duration"
     },
-    "btnGetPlan": "Get Investment Plan"
+    "btnGetPlan": "Get Investment Plan",
+    "btnSavePlan": "Save Investment Plan"
   },
   "imageGenerator": {
     "title": "Generate your image",
@@ -22,5 +23,12 @@
       "quantity": "Type quantity of images"
     },
     "btnGenerateImage": "Generate Images"
+  },
+  "authentication": {
+    "username": "Username",
+    "placeHolder": {
+      "username": "Enter your username"
+    },
+    "btnAuthenticate": "Authenticate"
   }
 }

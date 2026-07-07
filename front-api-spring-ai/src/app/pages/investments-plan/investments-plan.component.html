@@ -42,9 +42,12 @@
   <div class="container" *ngIf="invesmentsPlanResponse()">
     <div class="responseContainer">
       <h3>{{ 'investmentsPlan.title' | translate }}</h3>
-      <div [innerHTML]="invesmentsPlanResponse()!.planPayload"></div>
-      <p><strong>Operation ID:</strong> {{ invesmentsPlanResponse()!.operationId }}</p>
-      <p><strong>Timestamp:</strong> {{ invesmentsPlanResponse()!.timestamp }}</p>
+      <div [innerHTML]="invesmentsPlanResponse()!.investmentPlanHtml"></div>
     </div>
   </div>
+
+  @if (invesmentsPlanResponse()) {
+    <app-button-primary (onClick)="clickGetInvestmentsPlan()" [titleButton]="'investmentsPlan.btnSavePlan' | translate">
+    </app-button-primary>
+  }
 </section>

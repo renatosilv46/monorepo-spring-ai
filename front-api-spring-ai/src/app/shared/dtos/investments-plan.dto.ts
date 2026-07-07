@@ -5,7 +5,5 @@ export interface InvestmentsPlanRequestDto {
 }
 
 export interface InvestmentsPlanResponseDto {
-  operationId: string;
-  planPayload: string;
-  timestamp: string;
+  investmentPlanHtml: string;
 }
